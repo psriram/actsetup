@@ -197,6 +197,32 @@ function twentyfourteen_widgets_init() {
 }
 add_action( 'widgets_init', 'twentyfourteen_widgets_init' );
 
+function theme_add_bootstrap() {
+	wp_deregister_script( 'jQuery' );
+    wp_register_script( 'jQuery', ( '//code.jquery.com/jquery-2.1.1.min.js' ), false, null, false );
+    wp_enqueue_script( 'jQuery' );
+
+	wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.min.css' );
+	wp_enqueue_style( 'theme-style-css', get_template_directory_uri() . '/css/style.css' );
+	wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css' );
+	wp_enqueue_style( 'club-css', get_template_directory_uri() . '/css/club.css' );
+	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '3.0.0', true );
+}
+
+add_action( 'wp_enqueue_scripts', 'theme_add_bootstrap' );
+
+function load_custom_js_css() {
+	wp_enqueue_style('bootstrap-datetimepicker-css','//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/v4.0.0/build/css/bootstrap-datetimepicker.css');
+	wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/font-awesome-4.1.0/css/font-awesome.min.css' );
+	wp_enqueue_style( 'autocomplete-css', get_template_directory_uri() . '/css/jquery.autocomplete.css' );
+	wp_enqueue_script('moments','//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js');
+	wp_enqueue_script('bootstrap-datetimepicker-js','//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/v4.0.0/src/js/bootstrap-datetimepicker.js');
+    wp_enqueue_script('jquery-migrate','//code.jquery.com/jquery-migrate-1.2.1.min.js');
+
+
+}
+add_action( 'wp_enqueue_scripts', 'load_custom_js_css' );
+
 /**
  * Register Lato Google font for Twenty Fourteen.
  *
